@@ -1,0 +1,44 @@
+<!-- app/templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Replika-360</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <section class="section">
+        <div class="container">
+            <div class="header">
+                <h1 class="title">Replika-360</h1>
+            </div>
+            <div class="box">
+                <ul>
+                    {% for project in projects %}
+                    <li>
+                        <details>
+                            <summary>{{ project.name }}</summary>
+                            <ul>
+                                <li>
+                                    <a href="{{ url_for('download_all_files', project_id=project._id) }}" class="button is-primary is-light">
+                                        <span class="icon"><i class="fas fa-download"></i></span>
+                                        <span>Download All Files</span>
+                                    </a>
+                                </li>
+                                {% for file in project.files %}
+                                <li class="mt-2">
+                                    <a href="{{ url_for('download_file', project_id=project._id, filename=file.filename) }}" class="button is-link is-light">{{ file.filename }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </details>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
