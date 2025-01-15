@@ -59,7 +59,7 @@ if __name__ == "__main__":
     local_directory = "C:\\Users\\Ramos\\Pictures\\meshroom"
     
     # Informações de conexão SSH do Raspberry Pi
-    hostname = "192.168.0.110"
+    hostname = "192.168.242.100"
     username = "user"
     password = "123456789"
 

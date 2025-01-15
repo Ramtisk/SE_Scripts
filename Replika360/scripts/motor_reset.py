@@ -2,7 +2,6 @@ import paramiko
 import threading
 import time
 import logging
-from fetch_files import fetch_files  # Correctly import the fetch_files function
 import sys
 
 # Configurar logging
@@ -24,11 +23,6 @@ def execute_remote_script(hostname, username, password, script_path):
                 output = stdout.channel.recv(1024).decode()
                 logging.info(output)
                 sys.stderr.flush()
-                if "Acabou!" in output:
-                    logging.info("Script remoto finalizado com log 'Acabou!'")
-                    sys.stderr.flush()
-                    fetch_files("/home/user/projeto/Imagens","C:\\Users\\Ramos\\Pictures\\meshroom","192.168.0.110","user","123456789")
-                    return
             if stderr.channel.recv_stderr_ready():
                 error = stderr.channel.recv_stderr(1024).decode()
                 logging.error(error)
@@ -51,8 +45,7 @@ def main():
     password = "123456789"
     
     # Caminho para o script no Raspberry Pi
-    #script_path = "/home/user/projeto/motor-reset.py"
-    script_path = "/home/user/projeto/projeto.py"
+    script_path = "/home/user/projeto/motor-reset.py"
 
     logging.info("Iniciando execução do script remoto")
     ssh, monitor_thread = execute_remote_script(hostname, username, password, script_path)
