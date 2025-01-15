@@ -2,6 +2,7 @@ from pymongo import MongoClient
 import gridfs
 from flask import send_file
 from bson.objectid import ObjectId
+import os
 
 # Conectar ao MongoDB
 client = MongoClient('mongodb://localhost:27017/')
