@@ -3,10 +3,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1A1A2E">
     <title>Replika-360</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            background: linear-gradient(120deg, #0F2027, #203A43, #2C5364);
+            color: #EAEAEA;
+            font-family: 'Arial', sans-serif;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .title {
+            color: #FFD700;
+            text-shadow: 2px 2px 5px #000;
+        }
+        .box {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+        }
+        details {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        details summary {
+            font-weight: bold;
+            color: #FFD700;
+            cursor: pointer;
+        }
+        details ul {
+            margin-top: 0.5rem;
+            list-style: none;
+            padding-left: 1rem;
+        }
+        .button {
+            margin-right: 0.5rem;
+        }
+        .button.is-primary.is-light {
+            background: linear-gradient(120deg, #FFD700, #FFA500);
+            color: #1A1A2E;
+        }
+        .button.is-link.is-light {
+            background: linear-gradient(120deg, #1E90FF, #00BFFF);
+            color: #1A1A2E;
+        }
+        .button:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+    </style>
 </head>
 <body>
     <section class="section">
@@ -29,7 +84,10 @@
                                 </li>
                                 {% for file in project.files %}
                                 <li class="mt-2">
-                                    <a href="{{ url_for('download_file', project_id=project._id, filename=file.filename) }}" class="button is-link is-light">{{ file.filename }}</a>
+                                    <a href="{{ url_for('download_file', project_id=project._id, filename=file.filename) }}" class="button is-link is-light">
+                                        <span class="icon"><i class="fas fa-file"></i></span>
+                                        <span>{{ file.filename }}</span>
+                                    </a>
                                 </li>
                                 {% endfor %}
                             </ul>
